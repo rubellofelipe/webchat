@@ -35,21 +35,21 @@ websocket.onmessage = function (hash) {
 
     switch (tipo) {
         case 'alert':
-            elemento.style.color = 'crimson'
+            elemento.style.color = '#fe6d73'
             break;
         case 'command':
-            elemento.style.color = 'gold'
+            elemento.style.color = '#ffcb77'
             break;
         case 'set':
-            elemento.style.color = 'purple'
+            elemento.style.color = '#fe6d73'
             var comando = (mensagem.split(":"))
             username = comando[1].trim()
             break;
         case 'all':
-            elemento.style.color = 'black'
+            elemento.style.color = '#17c3b2'
             break;
         case 'target':
-            elemento.style.color = 'blue'
+            elemento.style.color = '#227c9d'
             break
         default:
             break;
@@ -72,13 +72,15 @@ websocket.onmessage = function (hash) {
 
 function change() {
     var mensagem = document.getElementById('mensagem').value.trim();
-    var area = document.getElementById('area_de_texto');
-    var elemento = document.createElement('p')
-    elemento.appendChild(document.createTextNode(mensagem))
-    elemento.style.textAlign = "right"
-    area.appendChild(elemento)
+
 
     if (mensagem.trim()) {
+        var area = document.getElementById('area_de_texto');
+        var elemento = document.createElement('p')
+        elemento.appendChild(document.createTextNode(mensagem))
+        elemento.style.textAlign = "right"
+        area.appendChild(elemento)
+        console.log(mensagem.trim())
         elemento.style.color = 'indigo'
         elemento.style.margin = '2px'
         var socketmessage = { 'sender': username, 'data': mensagem }

@@ -74,7 +74,7 @@ async def target(id, alvo, msg):
             if clients[client]['nome'] == alvo:
                 await clients[client]['websocket'].send(msg)
     else:
-        await clients[id]['websocket'].send(json.dumps({'sender': server_name, 'data': 'O usuário especifícado não existe. Utilize \\usuarios para ver quem esta na sala', 'type': alert_message}))
+        await clients[id]['websocket'].send(json.dumps({'sender': server_name, 'data': 'O usuário especifícado não existe. Utilize \\usuarios para ver quem está na sala', 'type': alert_message}))
 
 
 async def command(id, func, par):
@@ -153,7 +153,9 @@ async def echo(websocket, path):
                         {'sender': clients[id]["nome"], 'data': message, 'type': target_message})
                     await target(id, alvo, sendhash)
                 except:
-                    print('erro na mensagem')
+                    sendhash = json.dumps(
+                        {'sender': server_name, 'data': 'não foi mandado nenhuma mensagem', 'type': alert_message})
+                    await websocket.send(sendhash)
 
             elif message[0] == "\\":  # comando para o servidor
                 if ' ' in message:

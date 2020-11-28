@@ -7,9 +7,11 @@
 .area_de_texto{
     height: 500px;
     width: auto;
-    background-color: antiquewhite;;
+    background-color: #fef9ef;;
     overflow: auto;
 }
+
+
 
 body{
     background-color: white;
