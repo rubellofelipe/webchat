@@ -114,7 +114,7 @@ async def echo(websocket, path):
 
         nome = ''
         mensagem = {'sender': server_name,
-                    'data': 'Envie o seu nome', 'type': alert_message}
+                    'data': 'Bem vindo à sala de bate bato. Por favor digite seu nome para começar a conversar', 'type': alert_message}
         msg = json.dumps(mensagem)
         await websocket.send(msg)
         msg = await websocket.recv()
