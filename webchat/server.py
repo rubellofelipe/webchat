@@ -69,7 +69,7 @@ async def target(id, alvo, msg):
     if clients[id]['nome'] == alvo:
         await clients[id]['websocket'].send(json.dumps({'sender': server_name, 'data': 'Você está mandando mensagem privada para si mesmo', 'type': alert_message}))
 
-    if alvo in get_list_user():
+    elif alvo in get_list_user():
         for client in clients:
             if clients[client]['nome'] == alvo:
                 await clients[client]['websocket'].send(msg)
@@ -141,10 +141,8 @@ async def echo(websocket, path):
         while True:
             gethash = await websocket.recv()
             informacao = json.loads(gethash)
-            print(f'informacao {informacao}')
             message_sender = informacao['sender']
             message = informacao['data']
-            print(f'a mensagem é {message}')
 
             if message[0] == '@':  # mensagem privada
                 try:
@@ -156,7 +154,6 @@ async def echo(websocket, path):
                     await target(id, alvo, sendhash)
                 except:
                     print('erro na mensagem')
-                print("mensagem privada")
 
             elif message[0] == "\\":  # comando para o servidor
                 if ' ' in message:
@@ -167,17 +164,18 @@ async def echo(websocket, path):
                     func = message[1:]
                     par = None
 
-                print(f'a função é: {func}')
                 await command(id, func, par)
 
             else:  # mensagem para todos
-                print("mensagem para todos")
                 sendhash = json.dumps(
                     {'sender': clients[id]["nome"], 'data': message, 'type': global_message})
                 await broad(sendhash, id)
     except:
         print(
             f'o usuário de id {id} e nome {clients[id]["nome"]} foi desconectado')
+        sendhash = json.dumps(
+            {'sender': server_name, 'data': f'o usário {clients[id]["nome"]} foi desconectado', 'type': alert_message})
+        await broad(sendhash, id)
         del clients[id]
 
 

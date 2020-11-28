@@ -1,6 +1,16 @@
 var websocket = new WebSocket('ws://localhost:8888');
 var username = 'None';
 
+var input = document.getElementById('mensagem');
+input.addEventListener("keyup", function (event) {
+    if (event.key === 'Enter') {
+        console.log("apertou enter")
+        document.getElementById('btn').click();
+    }
+});
+
+
+
 
 websocket.onopen = function () {
     console.log('abriu')
