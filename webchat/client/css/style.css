@@ -1,0 +1,38 @@
+.cabecalho{
+    height: 50px;
+    width: auto;
+    background-color: aqua;
+}
+
+.area_de_texto{
+    height: 500px;
+    width: auto;
+    background-color: antiquewhite;;
+    overflow: auto;
+}
+
+body{
+    background-color: white;
+}
+
+.area_de_mensagem{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: brown;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#area_de_mensagem input{
+    width: 100%;
+}
+
+p{
+    width: 99%;
+    word-break: break-all;
+}
